@@ -1,0 +1,56 @@
+<!-- Inside templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Regex Matching</title>
+</head>
+<body>
+    <header>
+        <h1>Regex Matching</h1>
+        <button onclick="validateEmail()">Validate Email</button><br />
+    </header>
+
+    <main>
+        <form action="/" method="post">
+            <!-- Include CSRF token for form submission -->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            
+            <label for="test_string">Test String:</label><br />
+            <input type="text" name="test_string" required><br />
+
+            <label for="regex_pattern">Regex Pattern:</label> <br>
+            <input type="text" name="regex_pattern" required><br />
+
+            <button type="submit">Submit</button><br>
+        </form>
+    </main>
+
+    <script>
+        async function validateEmail() {
+            const email = prompt("Enter the email to validate:");
+            
+            if (email) {
+                const response = await fetch("/validate_email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `email=${encodeURIComponent(email)}`,
+                });
+
+                const data = await response.json();
+
+                if (data.is_valid) {
+                    alert("Email is valid!");
+                } else {
+                    alert("Email is not valid!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

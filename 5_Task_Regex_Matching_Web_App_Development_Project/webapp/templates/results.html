@@ -1,0 +1,84 @@
+<!-- Inside templates/results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Regex Matching Results</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap">
+
+</head>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif; /* Use Google Font - Poppins */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f5f5; /* Light background color */
+}
+
+h1 {
+    text-align: center;
+    color: #2b2b2b; /* Dark text color for emphasis */
+    margin-top: 20px;
+}
+
+p {
+    color: #565656; /* Dark gray text color */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 16px;
+    background-color: #ffffff; /* White background for list items */
+    padding: 20px; /* Adjusted padding for better spacing */
+    border-radius: 8px; /* Rounded corners for list items */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+a {
+    color: #4CAF50; /* Green link color */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px; /* Adjusted padding for better button appearance */
+    background-color: #ffffff; /* White background for links */
+    border: 2px solid #af4ca8; /* Border with a color similar to link */
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+a:hover {
+    background-color: #ac4caf; /* Darker background on hover */
+    color: #fff; /* White text color on hover */
+    text-decoration: none;
+}
+
+</style>
+<body>
+    <h1>Regex Matching Results</h1>
+
+    <p>Test String: {{ test_string }}</p>
+    <p>Regex Pattern: {{ regex_pattern }}</p>
+
+    {% if matched_strings %}
+        <h2>Matches:</h2>
+        <ul>
+            {% for match in matched_strings %}
+                <li>{{ match }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matches found.</p>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

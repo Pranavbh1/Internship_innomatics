@@ -1,0 +1,42 @@
+<!-- Inside templates/validate_email.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validation</title>
+</head>
+<body>
+    <h1>Email Validation</h1>
+
+    <form id="emailForm">
+        <label for="email">Enter Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <button type="button" onclick="validateEmail()">Validate</button><br>
+    </form>
+
+    <p id="validationResult"></p>
+
+    <script>
+        function validateEmail() {
+            var email = document.getElementById("email").value;
+
+            // Send a POST request to the /validate_email route
+            fetch("/validate_email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ email: email }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the UI based on the validation result
+                var resultElement = document.getElementById("validationResult");
+                resultElement.textContent = data.is_valid ? "Email is valid!" : "Email is not valid!";
+            });
+        }
+    </script>
+</body>
+</html>
