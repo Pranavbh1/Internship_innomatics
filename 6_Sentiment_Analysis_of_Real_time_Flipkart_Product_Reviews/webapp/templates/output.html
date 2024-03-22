@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: silver;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 145, 0, 0.8);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .emoji {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if prediction == 'Positive🎉' %}
+            <div class="emoji">😃</div>
+        {% elif prediction == 'Negative💣' %}
+            <div class="emoji">😔</div>
+        {% endif %}
+        <h1>Prediction</h1>
+        <p>The sentiment of the review is: {{ prediction }}</p>
+    </div>
+</body>
+</html>
