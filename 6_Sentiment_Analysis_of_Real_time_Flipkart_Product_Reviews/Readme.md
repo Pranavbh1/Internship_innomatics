@@ -1,3 +1,6 @@
+https://www.linkedin.com/posts/pranavbhawsar_mlops-mlflow-machinelearning-activity-7178812433187188737-__vQ?utm_source=share&utm_medium=member_desktop
+
+
 ![Banner](1.png)
 ![Banner](2.png)
 
